@@ -1,43 +1,32 @@
 class FizzBuzz
 
   def divisible_five(number)
-    result = number%5
-    result==0 ? true : false
+    number%5 == 0
   end
 
   def divisible_three(number)
-    result = number%3
-    result==0 ? true : false
+    number%3 == 0
   end
 
-  def divisible_fifteen(number)
-    result = number%15
-    result==0 ? true : false
+  def not_divisible_three_or_five(number)
+     !(divisible_three(number)||divisible_five(number))
   end
 
   def exchange(numbers)
-    numbers.squeeze!(" ")
-    numbers = numbers.split
+    numbers = numbers.squeeze(' ').split
     result = Array.new
     numbers.each do |number|
       if number.match(/^\d+$/)
         number = number.to_i
-        if(divisible_fifteen(number))
-          result.push("Fizz Buzz")
-        elsif(divisible_five(number))
-          result.push("Buzz")
-        elsif(divisible_three(number))
-          result.push("Fizz")
-        else
-          result.push(number)
-        end
+        result.push("Fizz") if divisible_three(number)
+        result.push("Buzz") if divisible_five(number)
+        result.push(number) if not_divisible_three_or_five(number)
       else
         return 'ERROR'
       end
     end
     return result.join(' ')
   end
-
 end
 
 if __FILE__ == $0
