@@ -1,16 +1,31 @@
 class FizzBuzz
 
   def compile_numbers number
-    'Fizz' if fizz_number? number
-    'Buzz' if buzz_number? number
-    'FizzBuzz' if fizzbuzz_number? number
+    case
+      when fizzbuzz_number?(number)
+        'FizzBuzz'
+      when fizz_number?(number)
+        'Fizz'
+      when buzz_number?(number)
+        'Buzz'
+      else
+        number
+    end
+  end
+
+  def compile_array array
+    result = []
+    array.each do |number|
+      result.push self.compile_numbers(number)
+    end
+    result.join(" ")
   end
 
 
   private
 
   def fizz_number? number
-    number%3 ==0
+    number%3 == 0
   end
 
   def buzz_number? number
