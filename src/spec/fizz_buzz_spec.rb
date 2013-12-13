@@ -24,11 +24,8 @@ describe FizzBuzz do
 
   describe 'array numbers test' do
     it 'should be "Fizz FizzBuzz" when input [3, 30, 41]' do
-      actual = subject.compile_array ([3, 30, 41])
+      actual = subject.compile_numbers([3, 30, 41])
       expect(actual).to eq('Fizz FizzBuzz 41')
     end
   end
-
-
-
 end
