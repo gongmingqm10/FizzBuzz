@@ -1,12 +1,9 @@
 class FizzBuzz
 
-  def compile_numbers number
-    case number
-      when Array
-        handle_array(number)
-      else
-        handle_single_number(number)
-    end
+  def compile_numbers str
+    numbers = str_to_array str
+    return 'ERROR' unless legal? numbers
+    handle_array(numbers)
   end
 
   private
@@ -23,10 +20,18 @@ class FizzBuzz
     end
   end
 
+  def legal? array
+     array.join('').match('^[0-9]*$')
+  end
+
+  def str_to_array str
+    str.squeeze(' ').split()
+  end
+
   def handle_array array
     result = []
     array.each do |number|
-      result.push handle_single_number(number)
+      result.push handle_single_number(number.to_i)
     end
     result.join(" ")
   end
@@ -42,4 +47,5 @@ class FizzBuzz
   def fizzbuzz_number? number
     number%15==0
   end
+
 end
